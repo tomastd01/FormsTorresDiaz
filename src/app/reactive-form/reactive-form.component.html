@@ -1,0 +1,10 @@
+<form [formGroup]="loginForm">
+    <label for="email">email:</label>
+    <input formControlName="email" type="text" id="email">
+    <label for="password">password:</label>
+    <input formControlName="password" type="password" id="password">
+    <label for="rc">remember cerentials:</label>
+    <input formControlName="rememberCredentials" type="checkbox" id="rc">
+
+    <button type="submit" (click)="login()">Submit</button>
+</form>
