@@ -10,9 +10,18 @@ export class ReactiveFormComponent {
   loginForm: FormGroup;
 
   constructor() {
+    let regExEmail: string = "^[a-z]+@[a-z]+\\.[a-z]{2-3}$";
+    let regExUser: string = "^[^\W\d][\w]+";
     let controls: any = {
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.minLength(6)]),
+      username: new FormControl("", 
+      [ 
+        Validators.required, 
+        Validators.minLength(5), 
+        Validators.maxLength(20), 
+        Validators.pattern(regExUser)
+      ]),
+      email: new FormControl("", [Validators.required, Validators.pattern(regExEmail)]),
+      password: new FormControl("", [Validators.required, Validators.minLength(6)]),
       rememberCredentials: new FormControl(false, [])
     }
 
