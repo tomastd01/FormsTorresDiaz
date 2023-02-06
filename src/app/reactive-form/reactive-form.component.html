@@ -1,17 +1,22 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()" class="mx-5">
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="mx-5 needs-validation" novalidate>
     <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
         <input formControlName="username" type="text" id="username" class="form-control">
-        <div id="emailHelp" class="form-text">Don't tell your mother.</div>
+        <div class="form-text valid" *ngIf="loginForm.controls['username'].valid">Campo valido</div>
+        <div class="form-text invalid" *ngIf="loginForm.controls['username'].errors?.['pattern']">El usuario no puede empezar con un número </div>
+        <div class="form-text invalid" *ngIf="loginForm.controls['username'].errors?.['minlength']">El usuario debe tener entre 5 y 20 caracteres.</div>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input formControlName="email" type="text" id="email" class="form-control">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <div class="form-text valid" *ngIf="loginForm.controls['email'].valid">Campo valido</div>
+        <div class="form-text invalid" *ngIf="loginForm.controls['email'].errors?.['pattern']">Ingresa un email valido</div>
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password:</label>
         <input formControlName="password" type="password" id="password" class="form-control">
+        <div class="form-text valid" *ngIf="loginForm.controls['password'].valid">Campo valido</div>
+        <div class="form-text invalid" *ngIf="loginForm.controls['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
     </div>
     <div class="mb-3 form-check">
         <input formControlName="rememberCredentials" type="checkbox" id="rc" class="form-check-input">
